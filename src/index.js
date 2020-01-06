@@ -7,10 +7,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import thunk from "redux-thunk";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { tripsReducer } from "./state/reducers";
+import { tripsReducer, userReducer } from "./state/reducers";
 
 const monsterReducer = combineReducers({
-  trips: tripsReducer
+  trips: tripsReducer,
+  user: userReducer
 });
 
 const store = createStore(

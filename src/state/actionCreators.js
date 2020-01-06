@@ -12,3 +12,15 @@ export const getTrips = () => dispatch => {
       });
     });
 };
+
+export const getUser = id => dispatch => {
+  axiosWithAuth()
+    .get(`https://kids-fly-backend.herokuapp.com/users/${id}`)
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: types.GET_USER,
+        payload: res
+      });
+    });
+};
