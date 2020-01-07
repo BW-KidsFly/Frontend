@@ -27,3 +27,25 @@ export function userReducer(user = initialUser, action) {
       return user;
   }
 }
+
+const initialForm = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  phone: "",
+  password: "",
+  is_admin: 0
+};
+export function registerFormReducer(form = initialForm, action) {
+  switch (action.type) {
+    case types.INPUT_CHANGE:
+      return {
+        ...form,
+        [action.payload.name]: action.payload.value
+      };
+    case types.SUBMIT:
+      return initialForm;
+    default:
+      return form;
+  }
+}

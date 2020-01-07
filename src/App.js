@@ -3,20 +3,25 @@ import logo from "./logo.svg";
 import "./App.css";
 import { connect } from "react-redux";
 import axiosWithAuth from "./axios/helper";
-import axios from "axios";
 
 function App() {
   useEffect(() => {
-    axios
+    axiosWithAuth()
       .get("https://kids-fly-backend.herokuapp.com/login", {
-        email: "Sydnee_Kuhlman@yahoo.com",
-        password: "password"
+        // first_name: "darragh",
+        // last_name: "ferry",
+        // email: "darragh42",
+        // password: "darragh42",
+        // phone: "123",
+        // is_admin: 0
+        email: "bar",
+        password: "bar"
       })
       .then(res => {
         console.log(res);
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
   }, []);
 
