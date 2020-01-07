@@ -12,7 +12,7 @@ import {
 import Navigation from "./header/Navigation";
 import axios from "axios";
 
-export default function Register() {
+export default function Register(props) {
   const [formValues, setFormValues] = useState({});
 
   const handleChange = event => {
@@ -24,18 +24,23 @@ export default function Register() {
 
   const onSubmit = event => {
     event.preventDefault();
+    const payload = {
+      first_name: formValues.first_name,
+      last_name: formValues.last_name,
+      email: formValues.email,
+      password: formValues.password,
+      phone: formValues.phone,
+      airport: formValues.airport,
+      is_admin: formValues.admin_code === 12345 ? 1 : 0
+    };
+
+    const onboardUrl =
+      payload.is_admin === 1 ? "/onboard/admin" : "/onboard/user";
+
     axios
-      .post("https://kids-fly-backend.herokuapp.com/users", {
-        first_name: formValues.first_name,
-        last_name: formValues.last_name,
-        email: formValues.email,
-        password: formValues.password,
-        phone: formValues.phone,
-        airport: formValues.airport,
-        is_admin: formValues.admin_code === 12345 ? 1 : 0
-      })
+      .post("https://kids-fly-backend.herokuapp.com/users", payload)
       .then(res => {
-        
+        props.history.push(onboardUrl);
       })
       .catch(err => {
         alert(err.message);
