@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Col,
@@ -10,8 +10,38 @@ import {
   Input
 } from "reactstrap";
 import Navigation from "./header/Navigation";
+import axios from "axios";
 
 export default function Register() {
+  const [formValues, setFormValues] = useState({});
+
+  const handleChange = event => {
+    setFormValues({
+      ...formValues,
+      [event.target.id]: event.target.value
+    });
+  };
+
+  const onSubmit = event => {
+    event.preventDefault();
+    axios
+      .post("https://kids-fly-backend.herokuapp.com/users", {
+        first_name: formValues.first_name,
+        last_name: formValues.last_name,
+        email: formValues.email,
+        password: formValues.password,
+        phone: formValues.phone,
+        airport: formValues.airport,
+        is_admin: formValues.admin_code === 12345 ? 1 : 0
+      })
+      .then(res => {
+        
+      })
+      .catch(err => {
+        alert(err.message);
+      });
+  };
+
   return (
     <>
       <Navigation login={true} />
@@ -20,23 +50,27 @@ export default function Register() {
           <Row form>
             <Col md={6}>
               <FormGroup>
-                <Label for="firstname">First Name</Label>
+                <Label for="first_name">First Name</Label>
                 <Input
                   type="text"
-                  name="firstname"
-                  id="firstname"
+                  name="first_name"
+                  id="first_name"
                   placeholder="First Name"
+                  onChange={handleChange}
+                  required
                 />
               </FormGroup>
             </Col>
             <Col md={6}>
               <FormGroup>
-                <Label for="lastname">Last Name</Label>
+                <Label for="last_name">Last Name</Label>
                 <Input
                   type="text"
-                  name="lastname"
-                  id="lastname"
+                  name="last_name"
+                  id="last_name"
                   placeholder="Last Name"
+                  onChange={handleChange}
+                  required
                 />
               </FormGroup>
             </Col>
@@ -48,6 +82,8 @@ export default function Register() {
               name="email"
               id="email"
               placeholder="Email Address"
+              onChange={handleChange}
+              required
             />
           </FormGroup>
           <FormGroup>
@@ -56,16 +92,20 @@ export default function Register() {
               type="password"
               name="password"
               id="password"
-              placeholder="xxxxxxxx"
+              placeholder="Password"
+              onChange={handleChange}
+              required
             />
           </FormGroup>
           <FormGroup>
             <Label for="phone">Phone Number</Label>
             <Input
-              type="phone"
+              type="tel"
               name="phone"
               id="phone"
               placeholder="Phone Number"
+              onChange={handleChange}
+              required
             />
           </FormGroup>
           <FormGroup>
@@ -75,10 +115,22 @@ export default function Register() {
               name="airport"
               id="airport"
               placeholder="Airport"
+              onChange={handleChange}
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="admin_code">Admin Code</Label>
+            <Input
+              type="number"
+              name="admin_code"
+              id="admin_code"
+              placeholder="Admin Code"
+              onChange={handleChange}
             />
           </FormGroup>
 
-          <Button>Register</Button>
+          <Button onClick={onSubmit}>Register</Button>
         </Form>
       </Container>
     </>
