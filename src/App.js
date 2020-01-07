@@ -4,39 +4,29 @@ import "./App.css";
 import { connect } from "react-redux";
 import axiosWithAuth from "./axios/helper";
 import axios from "axios";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import { Route } from "react-router-dom";
 
 function App() {
-  useEffect(() => {
-    axios
-      .get("https://kids-fly-backend.herokuapp.com/login", {
-        email: "Sydnee_Kuhlman@yahoo.com",
-        password: "password"
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Route
+        exact
+        path="/register"
+        render={props => {
+          return <Register {...props} />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/login"
+        render={props => {
+          return <Login {...props} />;
+        }}
+      />
+    </>
   );
 }
 
