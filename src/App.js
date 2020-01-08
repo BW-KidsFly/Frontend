@@ -3,27 +3,33 @@ import logo from "./logo.svg";
 import "./App.css";
 import { connect } from "react-redux";
 import axiosWithAuth from "./axios/helper";
-import axios from "axios";
+import Register from "./components/Register";
 
 function App() {
   useEffect(() => {
-    axios
+    axiosWithAuth()
       .get("https://kids-fly-backend.herokuapp.com/login", {
-        email: "Sydnee_Kuhlman@yahoo.com",
-        password: "password"
+        // first_name: "darragh",
+        // last_name: "ferry",
+        // email: "darragh42",
+        // password: "darragh42",
+        // phone: "123",
+        // is_admin: 0
+        email: "bar",
+        password: "bar"
       })
       .then(res => {
         console.log(res);
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
   }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -34,7 +40,8 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a> */}
+        <Register />
       </header>
     </div>
   );
