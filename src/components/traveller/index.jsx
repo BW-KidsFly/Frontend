@@ -26,7 +26,8 @@ export default function TravellerDash() {
           </ModalBody>
         </Modal>
 
-        <Trips/>
+        <h2 className="text-center mt-3">Your Trips</h2>
+        <Trips toggle={toggle}/>
       </Container>
     </>
   );

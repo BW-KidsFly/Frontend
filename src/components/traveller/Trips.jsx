@@ -6,11 +6,19 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody
 } from "reactstrap";
+import EditTrip from "./EditTrip";
 
 export default function Trips() {
   const [trips, setTrips] = useState([]);
+  const [editModal, setEditModal] = useState(false);
+  const [editValues, setEditValues] = useState({});
+
+  const toggle = () => setEditModal(!editModal);
 
   useEffect(() => {
     withAuth()
@@ -20,9 +28,14 @@ export default function Trips() {
       });
   }, []);
 
+  const editTrip = id => {
+    setEditValues(trips.find(trip => trip.id === id));
+    toggle();
+  };
+
   return (
     <>
-      {console.log(trips)}
+      {/* {console.log(trips)} */}
 
       {trips.map(trip => {
         return (
@@ -32,10 +45,25 @@ export default function Trips() {
               <CardSubtitle>{trip.airline}</CardSubtitle>
               <CardText>{trip.departure_time}</CardText>
               <CardText>{trip.kids}</CardText>
+              <Button
+                onClick={event => {
+                  event.preventDefault();
+                  editTrip(trip.id);
+                }}
+              >
+                Edit trip
+              </Button>
             </CardBody>
           </Card>
         );
       })}
+
+      <Modal isOpen={editModal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Edit your Trip</ModalHeader>
+        <ModalBody>
+          <EditTrip editValues={editValues} />
+        </ModalBody>
+      </Modal>
     </>
   );
 }
