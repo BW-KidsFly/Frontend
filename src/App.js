@@ -6,6 +6,7 @@ import axiosWithAuth from "./axios/helper";
 import axios from "axios";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Dashboard from "./components/traveller/";
 import { Route } from "react-router-dom";
 
 function App() {
@@ -24,6 +25,14 @@ function App() {
         path="/login"
         render={props => {
           return <Login {...props} />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/traveller"
+        render={props => {
+          return <Dashboard {...props} />;
         }}
       />
     </>
