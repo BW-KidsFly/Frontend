@@ -8,6 +8,7 @@ import thunk from "redux-thunk";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { tripsReducer, userReducer } from "./state/reducers";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const monsterReducer = combineReducers({
   trips: tripsReducer,
@@ -24,9 +25,11 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Router>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
   document.getElementById("root")
 );
 
