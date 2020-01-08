@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import TravellerDash from "./components/traveller/";
 import { Route } from "react-router-dom";
+import PrivateRoute from "./helpers/PrivateRoute";
 
 function App() {
   return (
@@ -26,13 +27,7 @@ function App() {
         }}
       />
 
-      <Route
-        exact
-        path="/traveller"
-        render={props => {
-          return <TravellerDash {...props} />;
-        }}
-      />
+      <PrivateRoute exact path="/traveller" component={TravellerDash} />
     </>
   );
 }
