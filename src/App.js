@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { connect } from "react-redux";
-import axiosWithAuth from "./axios/helper";
-import axios from "axios";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import Dashboard from "./components/traveller/";
+import TravellerDash from "./components/traveller/";
 import { Route } from "react-router-dom";
 
 function App() {
@@ -32,7 +30,7 @@ function App() {
         exact
         path="/traveller"
         render={props => {
-          return <Dashboard {...props} />;
+          return <TravellerDash {...props} />;
         }}
       />
     </>

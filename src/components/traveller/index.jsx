@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Container, Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import Navigation from "../header/Navigation";
 import CreateTrip from "./CreateTrip";
+import Trips from "./Trips";
 
-export default function Trips() {
+export default function TravellerDash() {
   const [createTrip, setCreateTrip] = useState(false);
 
   const toggle = () => setCreateTrip(!createTrip);
