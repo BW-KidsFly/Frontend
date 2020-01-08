@@ -1,8 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 export default function Navigation(props) {
   const { login, register, logout, trips } = props;
+  const history = useHistory()
+
+  const onLogout = event => {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    history.push("/login")
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
       <a className="navbar-brand" href="#">
@@ -25,12 +33,16 @@ export default function Navigation(props) {
         ) : null}
         {trips ? (
           <li className="nav-item">
-            <NavLink className="nav-link" to="/trips">
+            <NavLink className="nav-link" to="/traveller">
               Trips
             </NavLink>
           </li>
         ) : null}
-        {logout ? <li className="nav-item">Logout</li> : null}
+        {logout ? (
+          <li className="nav-item">
+            <a className="nav-link" onClick={onLogout} href="/">Logout</a>
+          </li>
+        ) : null}
       </ul>
     </nav>
   );

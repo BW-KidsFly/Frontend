@@ -31,7 +31,7 @@ export default function Register(props) {
       password: formValues.password,
       phone: formValues.phone,
       airport: formValues.airport,
-      is_admin: formValues.admin_code === 12345 ? 1 : 0
+      is_admin: formValues.admin_code === "12345" ? 1 : 0
     };
 
     const onboardUrl =

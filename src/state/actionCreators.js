@@ -1,4 +1,4 @@
-import axiosWithAuth from "../axios/helper";
+import axiosWithAuth from "../helpers/axios";
 import * as types from "./actionTypes";
 
 export const getTrips = () => dispatch => {

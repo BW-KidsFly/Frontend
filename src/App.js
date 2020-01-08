@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { connect } from "react-redux";
-import axiosWithAuth from "./axios/helper";
-import axios from "axios";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import TravellerDash from "./components/traveller/";
 import { Route } from "react-router-dom";
+import PrivateRoute from "./helpers/PrivateRoute";
+import Users from "./components/admin/Users";
 
 function App() {
   return (
@@ -26,6 +27,16 @@ function App() {
           return <Login {...props} />;
         }}
       />
+
+      <Route
+        exact
+        path="/admin/users"
+        render={props => {
+          return <Users {...props} />;
+        }}
+      />
+
+      <PrivateRoute exact path="/traveller" component={TravellerDash} />
     </>
   );
 }
