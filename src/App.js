@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import TravellerDash from "./components/traveller/";
 import { Route } from "react-router-dom";
 import PrivateRoute from "./helpers/PrivateRoute";
+import Users from "./components/admin/Users";
 
 function App() {
   return (
@@ -24,6 +25,14 @@ function App() {
         path="/login"
         render={props => {
           return <Login {...props} />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/admin/users"
+        render={props => {
+          return <Users {...props} />;
         }}
       />
 
