@@ -76,7 +76,7 @@ export default function EditTrip({ editValues }) {
         />
       </FormGroup>
 
-      <Button onClick={onSubmit}>Create Trip</Button>
+      <Button onClick={onSubmit}>Save Trip</Button>
     </Form>
   );
 }
