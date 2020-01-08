@@ -25,6 +25,9 @@ export default function Trips() {
       .get("https://kids-fly-backend.herokuapp.com/trips")
       .then(res => {
         setTrips(res.data);
+      })
+      .catch(err => {
+        alert(err.message);
       });
   }, []);
 
