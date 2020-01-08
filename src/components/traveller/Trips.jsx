@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
-import withAuth from "../../axios/helper";
-import Navigation from "../header/Navigation";
+import withAuth from "../../helpers/axios";
+import {
+  Card,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button
+} from "reactstrap";
 
 export default function Trips() {
   const [trips, setTrips] = useState([]);
@@ -15,11 +22,20 @@ export default function Trips() {
 
   return (
     <>
+      {console.log(trips)}
 
-      {
-          console.log(trips)
-          
-      }
+      {trips.map(trip => {
+        return (
+          <Card key={trip.id} className="mt-3">
+            <CardBody>
+              <CardTitle>{trip.airport}</CardTitle>
+              <CardSubtitle>{trip.airline}</CardSubtitle>
+              <CardText>{trip.departure_time}</CardText>
+              <CardText>{trip.kids}</CardText>
+            </CardBody>
+          </Card>
+        );
+      })}
     </>
   );
 }
