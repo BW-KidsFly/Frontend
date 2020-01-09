@@ -20,6 +20,13 @@ export const updateTrips = trip => {
   };
 };
 
+export const deleteTripById = id => {
+  return {
+    type: types.DELETE_TRIP,
+    payload: id
+  };
+};
+
 export const getUser = id => dispatch => {
   axiosWithAuth()
     .get(`https://kids-fly-backend.herokuapp.com/users/${id}`)

@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import EditTrip from "./EditTrip";
 import { connect } from "react-redux";
-import { getTrips } from "../../state/actionCreators";
+import { getTrips, deleteTripById } from "../../state/actionCreators";
 
 export function Trips({ trips, getTrips }) {
   // const [trips, setTrips] = useState([]);
@@ -40,10 +40,21 @@ export function Trips({ trips, getTrips }) {
     toggle();
   };
 
+  const deleteTrip = id => {
+    withAuth()
+      .delete(`https://kidsfly-eu.herokuapp.com/trips/${id}`)
+      .then(res => {
+        // setTrips(trips.filter(trip => trip.id !== id));
+        deleteTripById(id);
+        // alert("Trip deleted");
+      })
+      .catch(err => {
+        alert(err.message);
+      });
+  };
+
   return (
     <>
-      {console.log(trips)}
-
       {trips.map(trip => {
         return (
           <Card key={trip.id} className="mt-3">
@@ -56,12 +67,23 @@ export function Trips({ trips, getTrips }) {
                 <i className="fa fa-child" aria-hidden="true"></i> {trip.kids}
               </CardText>
               <Button
+                color="primary"
                 onClick={event => {
                   event.preventDefault();
                   editTrip(trip.id);
                 }}
               >
                 Edit trip
+              </Button>
+              <Button
+                color="danger"
+                className="ml-2"
+                onClick={event => {
+                  event.preventDefault();
+                  deleteTrip(trip.id);
+                }}
+              >
+                Delete Trip
               </Button>
             </CardBody>
           </Card>
@@ -84,4 +106,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getTrips })(Trips);
+export default connect(mapStateToProps, { getTrips, deleteTripById })(Trips);

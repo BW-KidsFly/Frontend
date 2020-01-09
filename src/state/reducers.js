@@ -6,13 +6,16 @@ export function tripsReducer(trips = initialTrips, action) {
     case types.GET_TRIPS:
       return action.payload;
     case types.UPDATE_TRIPS:
-      console.log(action);
-      console.log(trips);
       return trips.map(trip => {
         if (trip.id === action.payload.id) {
           return action.payload;
         }
         return trip;
+      });
+    case types.DELETE_TRIP:
+      return trips.filter(trip => {
+        console.log(trip);
+        return trip.id !== action.payload;
       });
     default:
       return trips;
