@@ -4,6 +4,7 @@ import "./App.css";
 import { connect } from "react-redux";
 import axiosWithAuth from "./axios/helper";
 import Register from "./components/Register";
+import Navigation from "./components/header/Navigation";
 
 function App() {
   useEffect(() => {
@@ -29,6 +30,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Navigation />
         {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
