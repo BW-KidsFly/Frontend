@@ -2,50 +2,42 @@ import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { connect } from "react-redux";
-import axiosWithAuth from "./axios/helper";
 import Register from "./components/Register";
-import Navigation from "./components/header/Navigation";
+import Login from "./components/Login";
+import TravellerDash from "./components/traveller/";
+import { Route } from "react-router-dom";
+import PrivateRoute from "./helpers/PrivateRoute";
+import Users from "./components/admin/Users";
 
 function App() {
-  useEffect(() => {
-    axiosWithAuth()
-      .get("https://kids-fly-backend.herokuapp.com/login", {
-        // first_name: "darragh",
-        // last_name: "ferry",
-        // email: "darragh42",
-        // password: "darragh42",
-        // phone: "123",
-        // is_admin: 0
-        email: "bar",
-        password: "bar"
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <Navigation />
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-        <Register />
-      </header>
-    </div>
+    <>
+      <Route
+        exact
+        path="/register"
+        render={props => {
+          return <Register {...props} />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/login"
+        render={props => {
+          return <Login {...props} />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/admin/users"
+        render={props => {
+          return <Users {...props} />;
+        }}
+      />
+
+      <PrivateRoute exact path="/traveller" component={TravellerDash} />
+    </>
   );
 }
 
