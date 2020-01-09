@@ -4,7 +4,7 @@ import withAuth from "../../helpers/axios";
 import { addTrip } from "../../state/actionCreators";
 import { connect } from "react-redux";
 
-export function CreateTrip({ addTrip }) {
+export function CreateTrip({ addTrip, toggle }) {
   const [formValues, setFormValues] = useState({
     airport: "",
     airline: "",
@@ -32,6 +32,7 @@ export function CreateTrip({ addTrip }) {
       .then(res => {
         addTrip(newTrip);
         alert("Created a new Trip");
+        toggle();
       })
       .catch(err => {
         alert(err.message);

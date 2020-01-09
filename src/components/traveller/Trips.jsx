@@ -4,8 +4,6 @@ import {
   Card,
   CardText,
   CardBody,
-  CardTitle,
-  CardSubtitle,
   Button,
   Modal,
   ModalHeader,
@@ -59,8 +57,8 @@ export function Trips({ trips, getTrips }) {
         return (
           <Card key={trip.id} className="mt-3">
             <CardBody>
-              <CardTitle>Arrival Airport: {trip.airport}</CardTitle>
-              <CardSubtitle>Airline: {trip.airline}</CardSubtitle>
+              <CardText>Arrival Airport: {trip.airport}</CardText>
+              <CardText>Airline: {trip.airline}</CardText>
               <CardText>Departure Time: {trip.departure_time}</CardText>
               <CardText>
                 Number of Kids{" "}
@@ -93,7 +91,7 @@ export function Trips({ trips, getTrips }) {
       <Modal isOpen={editModal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Edit your Trip</ModalHeader>
         <ModalBody>
-          <EditTrip editValues={editValues} />
+          <EditTrip editValues={editValues} toggle={toggle}/>
         </ModalBody>
       </Modal>
     </>
