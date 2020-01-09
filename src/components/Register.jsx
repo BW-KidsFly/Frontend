@@ -38,8 +38,9 @@ export default function Register(props) {
       payload.is_admin === 1 ? "/onboard/admin" : "/onboard/user";
 
     axios
-      .post("https://kids-fly-backend.herokuapp.com/users", payload)
+      .post("https://kidsfly-eu.herokuapp.com/users", payload)
       .then(res => {
+        console.log(res);
         props.history.push(onboardUrl);
       })
       .catch(err => {

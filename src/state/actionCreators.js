@@ -24,3 +24,13 @@ export const getUser = id => dispatch => {
       });
     });
 };
+
+export const inputChange = ({ name, value }) => {
+  return {
+    type: types.INPUT_CHANGE,
+    payload: {
+      name,
+      value
+    }
+  };
+};

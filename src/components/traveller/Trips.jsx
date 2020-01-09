@@ -24,6 +24,7 @@ export default function Trips() {
     withAuth()
       .get("https://kidsfly-eu.herokuapp.com/trips")
       .then(res => {
+        console.log(res);
         setTrips(res.data);
       })
       .catch(err => {
@@ -38,7 +39,7 @@ export default function Trips() {
 
   return (
     <>
-      {/* {console.log(trips)} */}
+      {console.log(trips)}
 
       {trips.map(trip => {
         return (

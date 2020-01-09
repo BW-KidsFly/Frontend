@@ -12,14 +12,16 @@ export default function Login(props) {
   const handleChange = event => {
     setFormValues({
       ...formValues,
-      [event.target.id]: event.target.value
+      [event.target.name]: event.target.value
     });
   };
 
   const onSubmit = event => {
     event.preventDefault();
+    console.log(formValues);
     const payload = {
-      ...formValues
+      email: formValues.email,
+      password: formValues.password
     };
 
     axios
