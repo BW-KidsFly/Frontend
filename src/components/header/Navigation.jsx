@@ -3,17 +3,24 @@ import { NavLink, useHistory } from "react-router-dom";
 
 export default function Navigation(props) {
   const { login, register, logout, trips } = props;
-  const history = useHistory()
+  const history = useHistory();
 
   const onLogout = event => {
     event.preventDefault();
     localStorage.removeItem("token");
-    history.push("/login")
+    history.push("/login");
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-      <a className="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+      <a class="navbar-brand" href="#">
+        <img
+          src="https://sleepy-euclid-319895.netlify.com/img/logo.png"
+          width="30"
+          height="30"
+          class="d-inline-block align-top mr-2"
+          alt=""
+        />
         Kids Fly
       </a>
       <ul className="navbar-nav">
@@ -40,7 +47,9 @@ export default function Navigation(props) {
         ) : null}
         {logout ? (
           <li className="nav-item">
-            <a className="nav-link" onClick={onLogout} href="/">Logout</a>
+            <a className="nav-link" onClick={onLogout} href="/">
+              Logout
+            </a>
           </li>
         ) : null}
       </ul>
