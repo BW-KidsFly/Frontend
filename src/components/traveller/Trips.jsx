@@ -22,8 +22,9 @@ export default function Trips() {
 
   useEffect(() => {
     withAuth()
-      .get("https://kids-fly-backend.herokuapp.com/trips")
+      .get("https://kidsfly-eu.herokuapp.com/trips")
       .then(res => {
+        console.log(res);
         setTrips(res.data);
       })
       .catch(err => {
@@ -38,7 +39,7 @@ export default function Trips() {
 
   return (
     <>
-      {/* {console.log(trips)} */}
+      {console.log(trips)}
 
       {trips.map(trip => {
         return (
