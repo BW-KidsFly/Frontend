@@ -22,7 +22,7 @@ function App() {
 
       <Route
         exact
-        path="/login"
+        path="/"
         render={props => {
           return <Login {...props} />;
         }}
