@@ -20,15 +20,9 @@ export default function Users() {
     <>
       <Navigation logout={true} trips={true} />
       <h2 className="text-center mt-2">Registered Users</h2>
-        {
-            regUsers.map(user => {
-                return (
-                    <>
-                    {user.first_name}
-                    </>
-                )
-            })
-        }
+      {regUsers.map(user => {
+        return <h2>{user.first_name}</h2>;
+      })}
     </>
   );
 }

@@ -12,24 +12,27 @@ import {
   ModalBody
 } from "reactstrap";
 import EditTrip from "./EditTrip";
+import { connect } from "react-redux";
+import { getTrips } from "../../state/actionCreators";
 
-export default function Trips() {
-  const [trips, setTrips] = useState([]);
+export function Trips({ trips, getTrips }) {
+  // const [trips, setTrips] = useState([]);
   const [editModal, setEditModal] = useState(false);
   const [editValues, setEditValues] = useState({});
 
   const toggle = () => setEditModal(!editModal);
 
   useEffect(() => {
-    withAuth()
-      .get("https://kidsfly-eu.herokuapp.com/trips")
-      .then(res => {
-        console.log(res);
-        setTrips(res.data);
-      })
-      .catch(err => {
-        alert(err.message);
-      });
+    // withAuth()
+    //   .get("https://kidsfly-eu.herokuapp.com/trips")
+    //   .then(res => {
+    //     console.log(res);
+    //     setTrips(res.data);
+    //   })
+    //   .catch(err => {
+    //     alert(err.message);
+    //   });
+    getTrips();
   }, []);
 
   const editTrip = id => {
@@ -48,7 +51,10 @@ export default function Trips() {
               <CardTitle>Arrival Airport: {trip.airport}</CardTitle>
               <CardSubtitle>Airline: {trip.airline}</CardSubtitle>
               <CardText>Departure Time: {trip.departure_time}</CardText>
-              <CardText>Number of Kids <i className="fa fa-child" aria-hidden="true"></i> {trip.kids}</CardText>
+              <CardText>
+                Number of Kids{" "}
+                <i className="fa fa-child" aria-hidden="true"></i> {trip.kids}
+              </CardText>
               <Button
                 onClick={event => {
                   event.preventDefault();
@@ -71,3 +77,11 @@ export default function Trips() {
     </>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    trips: state.trips
+  };
+}
+
+export default connect(mapStateToProps, { getTrips })(Trips);

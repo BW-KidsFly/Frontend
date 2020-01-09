@@ -3,12 +3,12 @@ import * as types from "./actionTypes";
 
 export const getTrips = () => dispatch => {
   axiosWithAuth()
-    .get("https://kids-fly-backend.herokuapp.com/trips")
+    .get("https://kidsfly-eu.herokuapp.com/trips")
     .then(res => {
       console.log(res);
       dispatch({
         type: types.GET_TRIPS,
-        payload: res
+        payload: res.data
       });
     });
 };
