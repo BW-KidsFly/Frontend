@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import withAuth from "../../helpers/axios";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { connect } from "react-redux";
+import { updateTrips } from "../../state/actionCreators";
 
-export default function EditTrip({ editValues }) {
+export function EditTrip({ editValues, updateTrips }) {
+  console.log(editValues);
   const [formValues, setFormValues] = useState({
     airport: "",
     airline: "",
     departure_time: "",
     kids: ""
   });
+
+  useEffect(() => {
+    setFormValues(editValues);
+  }, []);
 
   const handleChange = event => {
     setFormValues({
@@ -23,8 +30,9 @@ export default function EditTrip({ editValues }) {
       ...formValues
     };
     withAuth()
-      .put("https://kidsfly-eu.herokuapp.com/login", payload)
+      .put(`https://kidsfly-eu.herokuapp.com/trips/${editValues.id}`, payload)
       .then(res => {
+        updateTrips({ ...formValues });
         alert("Trip Edited");
       })
       .catch(err => {
@@ -42,7 +50,7 @@ export default function EditTrip({ editValues }) {
           id="airport"
           placeholder="Airport"
           onChange={handleChange}
-          value={editValues.airport}
+          value={formValues.airport}
           required
         />
       </FormGroup>
@@ -55,7 +63,7 @@ export default function EditTrip({ editValues }) {
           id="airline"
           placeholder="airline"
           onChange={handleChange}
-          value={editValues.airline}
+          value={formValues.airline}
           required
         />
       </FormGroup>
@@ -68,7 +76,7 @@ export default function EditTrip({ editValues }) {
           id="departure_time"
           placeholder="departure_time"
           onChange={handleChange}
-          value={editValues.departure_time}
+          value={formValues.departure_time}
           required
         />
       </FormGroup>
@@ -81,7 +89,7 @@ export default function EditTrip({ editValues }) {
           id="kids"
           placeholder="kids"
           onChange={handleChange}
-          value={editValues.kids}
+          value={formValues.kids}
           required
         />
       </FormGroup>
@@ -90,3 +98,11 @@ export default function EditTrip({ editValues }) {
     </Form>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    trips: state.trips
+  };
+}
+
+export default connect(mapStateToProps, { updateTrips })(EditTrip);

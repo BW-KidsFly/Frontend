@@ -3,14 +3,36 @@ import * as types from "./actionTypes";
 
 export const getTrips = () => dispatch => {
   axiosWithAuth()
-    .get("https://kids-fly-backend.herokuapp.com/trips")
+    .get("https://kidsfly-eu.herokuapp.com/trips")
     .then(res => {
       console.log(res);
       dispatch({
         type: types.GET_TRIPS,
-        payload: res
+        payload: res.data
       });
     });
+};
+
+export const updateTrips = trip => {
+  return {
+    type: types.UPDATE_TRIPS,
+    payload: trip
+  };
+};
+
+export const deleteTripById = id => {
+  console.log(id);
+  return {
+    type: types.DELETE_TRIP,
+    payload: id
+  };
+};
+
+export const addTrip = newTrip => {
+  return {
+    type: types.ADD_TRIP,
+    payload: newTrip
+  };
 };
 
 export const getUser = id => dispatch => {

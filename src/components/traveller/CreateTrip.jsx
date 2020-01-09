@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import withAuth from "../../helpers/axios";
+import { addTrip } from "../../state/actionCreators";
+import { connect } from "react-redux";
 
-export default function CreateTrip() {
+export function CreateTrip({ addTrip }) {
   const [formValues, setFormValues] = useState({
     airport: "",
     airline: "",
@@ -21,13 +23,15 @@ export default function CreateTrip() {
   const onSubmit = event => {
     event.preventDefault();
 
-    const payload = {
+    const newTrip = {
       ...formValues
     };
+    console.log(newTrip);
     withAuth()
-      .post("https://kidsfly-eu.herokuapp.com/trips", payload)
+      .post("https://kidsfly-eu.herokuapp.com/trips", newTrip)
       .then(res => {
-        alert("Created a new Trip")
+        addTrip(newTrip);
+        alert("Created a new Trip");
       })
       .catch(err => {
         alert(err.message);
@@ -88,3 +92,11 @@ export default function CreateTrip() {
     </Form>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    trips: state.trips
+  };
+}
+
+export default connect(mapStateToProps, { addTrip })(CreateTrip);
