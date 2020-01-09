@@ -16,7 +16,7 @@ export default function TravellerDash() {
         <Modal isOpen={createTrip} toggle={toggle}>
           <ModalHeader toggle={toggle}>Add a Trip</ModalHeader>
           <ModalBody>
-            <CreateTrip />
+            <CreateTrip toggle={toggle}/>
           </ModalBody>
         </Modal>
 

@@ -4,8 +4,6 @@ import {
   Card,
   CardText,
   CardBody,
-  CardTitle,
-  CardSubtitle,
   Button,
   Modal,
   ModalHeader,
@@ -93,7 +91,7 @@ export function Trips({ trips, getTrips }) {
       <Modal isOpen={editModal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Edit your Trip</ModalHeader>
         <ModalBody>
-          <EditTrip editValues={editValues} />
+          <EditTrip editValues={editValues} toggle={toggle}/>
         </ModalBody>
       </Modal>
     </>

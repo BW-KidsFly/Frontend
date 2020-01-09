@@ -4,8 +4,7 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { connect } from "react-redux";
 import { updateTrips } from "../../state/actionCreators";
 
-export function EditTrip({ editValues, updateTrips }) {
-  console.log(editValues);
+export function EditTrip({ editValues, updateTrips, toggle }) {
   const [formValues, setFormValues] = useState({
     airport: "",
     airline: "",
@@ -34,6 +33,7 @@ export function EditTrip({ editValues, updateTrips }) {
       .then(res => {
         updateTrips({ ...formValues });
         alert("Trip Edited");
+        toggle();
       })
       .catch(err => {
         alert(err.message);
