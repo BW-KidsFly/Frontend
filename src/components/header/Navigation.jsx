@@ -8,7 +8,7 @@ export default function Navigation(props) {
   const onLogout = event => {
     event.preventDefault();
     localStorage.removeItem("token");
-    history.push("/login");
+    history.push("/");
   };
 
   return (
@@ -26,7 +26,7 @@ export default function Navigation(props) {
       <ul className="navbar-nav">
         {login ? (
           <li className="nav-item">
-            <NavLink className="nav-link" to="/login">
+            <NavLink className="nav-link" to="/">
               Login
             </NavLink>
           </li>
