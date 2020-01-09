@@ -59,8 +59,8 @@ export function Trips({ trips, getTrips }) {
         return (
           <Card key={trip.id} className="mt-3">
             <CardBody>
-              <CardTitle>Arrival Airport: {trip.airport}</CardTitle>
-              <CardSubtitle>Airline: {trip.airline}</CardSubtitle>
+              <CardText>Arrival Airport: {trip.airport}</CardText>
+              <CardText>Airline: {trip.airline}</CardText>
               <CardText>Departure Time: {trip.departure_time}</CardText>
               <CardText>
                 Number of Kids{" "}

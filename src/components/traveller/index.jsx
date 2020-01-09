@@ -13,12 +13,6 @@ export default function TravellerDash() {
     <>
       <Navigation logout={true} />
       <Container>
-        <div className="text-center mt-3">
-          <Button color="primary" onClick={toggle}>
-            CREATE TRIP
-          </Button>
-        </div>
-
         <Modal isOpen={createTrip} toggle={toggle}>
           <ModalHeader toggle={toggle}>Add a Trip</ModalHeader>
           <ModalBody>
@@ -27,6 +21,11 @@ export default function TravellerDash() {
         </Modal>
 
         <h2 className="text-center mt-3">Your Trips</h2>
+        <div className="text-center mt-3">
+          <Button color="primary" onClick={toggle} className="w-100">
+            CREATE TRIP
+          </Button>
+        </div>
         <Trips toggle={toggle} />
       </Container>
     </>
