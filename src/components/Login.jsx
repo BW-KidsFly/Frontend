@@ -12,21 +12,22 @@ export default function Login() {
   const handleChange = event => {
     setFormValues({
       ...formValues,
-      [event.target.id]: event.target.value
+      [event.target.name]: event.target.value
     });
   };
 
   const onSubmit = event => {
     event.preventDefault();
+    console.log(formValues);
     const payload = {
-      ...formValues
+      email: formValues.email,
+      password: formValues.password
     };
-    axios
-      .post("https://kids-fly-backend.herokuapp.com/login", payload)
-      .then(res => {
-        console.log(res);
-        localStorage.setItem("token", res.data.token);
-      });
+    console.log(payload);
+    axios.post("https://kidsfly-eu.herokuapp.com/login", payload).then(res => {
+      console.log(res);
+      localStorage.setItem("token", res.data.token);
+    });
   };
 
   return (
