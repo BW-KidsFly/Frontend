@@ -37,10 +37,20 @@ export default function Trips() {
     toggle();
   };
 
+  const deleteTrip = id => {
+    withAuth()
+      .delete(`https://kidsfly-eu.herokuapp.com/trips/${id}`)
+      .then(res => {
+        alert("Trip deleted");
+        setTrips(trips.filter(trip => trip.id !== id));
+      })
+      .catch(err => {
+        alert(err.message);
+      });
+  };
+
   return (
     <>
-      {console.log(trips)}
-
       {trips.map(trip => {
         return (
           <Card key={trip.id} className="mt-3">
@@ -48,14 +58,28 @@ export default function Trips() {
               <CardTitle>Arrival Airport: {trip.airport}</CardTitle>
               <CardSubtitle>Airline: {trip.airline}</CardSubtitle>
               <CardText>Departure Time: {trip.departure_time}</CardText>
-              <CardText>Number of Kids <i className="fa fa-child" aria-hidden="true"></i> {trip.kids}</CardText>
+              <CardText>
+                Number of Kids{" "}
+                <i className="fa fa-child" aria-hidden="true"></i> {trip.kids}
+              </CardText>
               <Button
+                color="primary"
                 onClick={event => {
                   event.preventDefault();
                   editTrip(trip.id);
                 }}
               >
                 Edit trip
+              </Button>
+              <Button
+                color="danger"
+                className="ml-2"
+                onClick={event => {
+                  event.preventDefault();
+                  deleteTrip(trip.id);
+                }}
+              >
+                Delete Trip
               </Button>
             </CardBody>
           </Card>
