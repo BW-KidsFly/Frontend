@@ -13,10 +13,13 @@ export function tripsReducer(trips = initialTrips, action) {
         return trip;
       });
     case types.DELETE_TRIP:
+      // console.log(trips);
       return trips.filter(trip => {
-        console.log(trip);
+        // console.log(trip);
         return trip.id !== action.payload;
       });
+    case types.ADD_TRIP:
+      return [...trips, action.payload];
     default:
       return trips;
   }

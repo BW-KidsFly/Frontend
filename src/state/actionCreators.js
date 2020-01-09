@@ -21,9 +21,17 @@ export const updateTrips = trip => {
 };
 
 export const deleteTripById = id => {
+  console.log(id);
   return {
     type: types.DELETE_TRIP,
     payload: id
+  };
+};
+
+export const addTrip = newTrip => {
+  return {
+    type: types.ADD_TRIP,
+    payload: newTrip
   };
 };
 
