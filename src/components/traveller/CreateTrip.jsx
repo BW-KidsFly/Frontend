@@ -25,9 +25,9 @@ export default function CreateTrip() {
       ...formValues
     };
     withAuth()
-      .post("https://kids-fly-backend.herokuapp.com/trips", payload)
+      .post("https://kidsfly-eu.herokuapp.com/trips", payload)
       .then(res => {
-        alert(res.statusText + " a new Trip")
+        alert("Created a new Trip")
       })
       .catch(err => {
         alert(err.message);
