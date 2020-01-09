@@ -22,7 +22,7 @@ export default function Trips() {
 
   useEffect(() => {
     withAuth()
-      .get("https://kids-fly-backend.herokuapp.com/trips")
+      .get("https://kidsfly-eu.herokuapp.com/trips")
       .then(res => {
         setTrips(res.data);
       })
@@ -44,10 +44,10 @@ export default function Trips() {
         return (
           <Card key={trip.id} className="mt-3">
             <CardBody>
-              <CardTitle>{trip.airport}</CardTitle>
-              <CardSubtitle>{trip.airline}</CardSubtitle>
-              <CardText>{trip.departure_time}</CardText>
-              <CardText>{trip.kids}</CardText>
+              <CardTitle>Arrival Airport: {trip.airport}</CardTitle>
+              <CardSubtitle>Airline: {trip.airline}</CardSubtitle>
+              <CardText>Departure Time: {trip.departure_time}</CardText>
+              <CardText>Number of Kids <i className="fa fa-child" aria-hidden="true"></i> {trip.kids}</CardText>
               <Button
                 onClick={event => {
                   event.preventDefault();
