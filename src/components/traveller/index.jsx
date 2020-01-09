@@ -14,7 +14,7 @@ export default function TravellerDash() {
       <Navigation logout={true} />
       <Container>
         <div className="text-center mt-3">
-          <Button color="danger" onClick={toggle}>
+          <Button color="primary" onClick={toggle}>
             CREATE TRIP
           </Button>
         </div>
@@ -27,7 +27,7 @@ export default function TravellerDash() {
         </Modal>
 
         <h2 className="text-center mt-3">Your Trips</h2>
-        <Trips toggle={toggle}/>
+        <Trips toggle={toggle} />
       </Container>
     </>
   );
