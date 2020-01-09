@@ -7,7 +7,7 @@ export default function Users() {
 
   useEffect(() => {
     withAuth()
-      .get("https://kids-fly-backend.herokuapp.com/users")
+      .get("https://kidsfly-eu.herokuapp.com/users")
       .then(res => {
         setRegUsers(res.data);
       })
@@ -20,7 +20,7 @@ export default function Users() {
     <>
       <Navigation logout={true} trips={true} />
       <h2 className="text-center mt-2">Registered Users</h2>
-        {/* {
+        {
             regUsers.map(user => {
                 return (
                     <>
@@ -28,7 +28,7 @@ export default function Users() {
                     </>
                 )
             })
-        } */}
+        }
     </>
   );
 }

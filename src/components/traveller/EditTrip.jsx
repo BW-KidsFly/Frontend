@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import withAuth from "../../helpers/axios";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
@@ -19,7 +19,17 @@ export default function EditTrip({ editValues }) {
 
   const onSubmit = event => {
     event.preventDefault();
-    console.log(formValues);
+    const payload = {
+      ...formValues
+    };
+    withAuth()
+      .put("https://kidsfly-eu.herokuapp.com/login", payload)
+      .then(res => {
+        alert("Trip Edited");
+      })
+      .catch(err => {
+        alert(err.message);
+      });
   };
 
   return (
