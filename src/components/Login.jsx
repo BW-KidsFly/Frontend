@@ -3,7 +3,7 @@ import { Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
 import Navigation from "./header/Navigation";
 
-export default function Login() {
+export default function Login(props) {
   const [formValues, setFormValues] = useState({
     email: "",
     password: ""
@@ -21,11 +21,17 @@ export default function Login() {
     const payload = {
       ...formValues
     };
+
     axios
-      .post("https://kids-fly-backend.herokuapp.com/login", payload)
+      .post("https://kidsfly-eu.herokuapp.com/login", payload)
       .then(res => {
-        console.log(res);
         localStorage.setItem("token", res.data.token);
+        const landingUrl =
+          res.data.is_admin === true ? "/admin/users" : "/traveller";
+        props.history.push(landingUrl);
+      })
+      .catch(err => {
+        alert(err.message);
       });
   };
 
