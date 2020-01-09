@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import withAuth from "../../helpers/axios";
 
 export default function CreateTrip() {
   const [formValues, setFormValues] = useState({
@@ -19,7 +20,18 @@ export default function CreateTrip() {
 
   const onSubmit = event => {
     event.preventDefault();
-    console.log(formValues);
+
+    const payload = {
+      ...formValues
+    };
+    withAuth()
+      .post("https://kids-fly-backend.herokuapp.com/trips", payload)
+      .then(res => {
+        alert(res.statusText + " a new Trip")
+      })
+      .catch(err => {
+        alert(err.message);
+      });
   };
 
   return (
