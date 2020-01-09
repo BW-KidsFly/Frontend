@@ -13,6 +13,13 @@ export const getTrips = () => dispatch => {
     });
 };
 
+export const updateTrips = trip => {
+  return {
+    type: types.UPDATE_TRIPS,
+    payload: trip
+  };
+};
+
 export const getUser = id => dispatch => {
   axiosWithAuth()
     .get(`https://kids-fly-backend.herokuapp.com/users/${id}`)

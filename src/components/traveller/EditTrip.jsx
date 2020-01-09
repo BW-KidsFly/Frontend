@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import withAuth from "../../helpers/axios";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { connect } from "react-redux";
+import { updateTrips } from "../../state/actionCreators";
 
-export default function EditTrip({ editValues }) {
+export function EditTrip({ editValues, updateTrips }) {
   console.log(editValues);
   const [formValues, setFormValues] = useState({
     airport: "",
@@ -30,6 +32,7 @@ export default function EditTrip({ editValues }) {
     withAuth()
       .put(`https://kidsfly-eu.herokuapp.com/trips/${editValues.id}`, payload)
       .then(res => {
+        updateTrips({ ...formValues });
         alert("Trip Edited");
       })
       .catch(err => {
@@ -95,3 +98,11 @@ export default function EditTrip({ editValues }) {
     </Form>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    trips: state.trips
+  };
+}
+
+export default connect(mapStateToProps, { updateTrips })(EditTrip);
