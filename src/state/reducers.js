@@ -2,6 +2,7 @@ import * as types from "./actionTypes";
 
 const initialTrips = [];
 export function tripsReducer(trips = initialTrips, action) {
+  console.log(action);
   switch (action.type) {
     case types.GET_TRIPS:
       return action.payload;
@@ -13,10 +14,10 @@ export function tripsReducer(trips = initialTrips, action) {
         return trip;
       });
     case types.DELETE_TRIP:
-      // console.log(trips);
       return trips.filter(trip => {
-        // console.log(trip);
-        return trip.id !== action.payload;
+        if (trip.id !== action.payload) {
+          return trip;
+        }
       });
     case types.ADD_TRIP:
       return [...trips, action.payload];
