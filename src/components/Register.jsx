@@ -35,7 +35,7 @@ export default function Register(props) {
     };
 
     const onboardUrl =
-      payload.is_admin === 1 ? "/onboard/admin" : "/onboard/user";
+      payload.is_admin === 1 ? "/admin/users" : "/traveller";
 
     axios
       .post("https://kidsfly-eu.herokuapp.com/users", payload)
