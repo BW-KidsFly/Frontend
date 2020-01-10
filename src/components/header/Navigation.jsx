@@ -13,7 +13,7 @@ export default function Navigation(props) {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="https://sleepy-euclid-319895.netlify.com/">
         <img
           src="https://sleepy-euclid-319895.netlify.com/img/logo.png"
           width="30"
