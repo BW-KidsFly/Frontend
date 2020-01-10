@@ -136,7 +136,7 @@ export default function Register(props) {
             />
           </FormGroup>
 
-          <Button onClick={onSubmit}>Register</Button>
+          <Button onClick={onSubmit} color="success">Register</Button>
         </Form>
       </Container>
     </>

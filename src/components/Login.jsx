@@ -64,7 +64,7 @@ export default function Login(props) {
               required
             />
           </FormGroup>
-          <Button onClick={onSubmit}>Login</Button>
+          <Button onClick={onSubmit} color="success">Login</Button>
         </Form>
       </Container>
     </>
