@@ -47,6 +47,11 @@ export function Trips({ trips, getTrips }) {
         // setTrips(trips.filter(trip => trip.id !== id));
         deleteTripById(id);
         // alert("Trip deleted");
+        const something = res;
+        return something;
+      })
+      .then(something => {
+        getTrips();
       })
       .catch(err => {
         alert(err.message);
