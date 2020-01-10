@@ -89,7 +89,7 @@ export function CreateTrip({ addTrip, toggle }) {
         />
       </FormGroup>
 
-      <Button onClick={onSubmit}>Create Trip</Button>
+      <Button onClick={onSubmit} color="success">Create Trip</Button>
     </Form>
   );
 }

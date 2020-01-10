@@ -94,7 +94,7 @@ export function EditTrip({ editValues, updateTrips, toggle }) {
         />
       </FormGroup>
 
-      <Button onClick={onSubmit}>Save Trip</Button>
+      <Button onClick={onSubmit} color="success">Save Trip</Button>
     </Form>
   );
 }
