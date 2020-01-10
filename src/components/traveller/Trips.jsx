@@ -59,7 +59,10 @@ export function Trips({ trips, getTrips }) {
             <CardBody>
               <CardText>Arrival Airport: {trip.airport}</CardText>
               <CardText>Airline: {trip.airline}</CardText>
-              <CardText>Departure Time: {trip.departure_time}</CardText>
+              <CardText>
+                Departure Date: {trip.departure_time.slice(0, 10)}
+              </CardText>
+              <CardText>Time: {trip.departure_time.slice(11, 16)}</CardText>
               <CardText>
                 Number of Kids{" "}
                 <i className="fa fa-child" aria-hidden="true"></i> {trip.kids}
@@ -91,7 +94,7 @@ export function Trips({ trips, getTrips }) {
       <Modal isOpen={editModal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Edit your Trip</ModalHeader>
         <ModalBody>
-          <EditTrip editValues={editValues} toggle={toggle}/>
+          <EditTrip editValues={editValues} toggle={toggle} />
         </ModalBody>
       </Modal>
     </>
